@@ -58,6 +58,8 @@ dependencies {
     def version_okhttp_logging="4.2.1"
     def version_rx="2.2.15"
     def version_rx_android="2.1.1"
+    def version_life_cycle = "2.1.0"
+
     //Jetpack
     implementation "androidx.appcompat:appcompat:$version_support"
     implementation "androidx.recyclerview:recyclerview:$version_support"
@@ -80,4 +82,12 @@ dependencies {
     //Rx
     implementation "io.reactivex.rxjava2:rxjava:$version_rx"
     implementation "io.reactivex.rxjava2:rxandroid:$version_rx_android"
+    //LifeCycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$version_life_cycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$version_life_cycle"
+    kapt "androidx.lifecycle:lifecycle-compiler:$version_life_cycle"
+
+    //ButterKnife
+    implementation 'com.jakewharton:butterknife:10.2.0'
+    kapt 'com.jakewharton:butterknife-compiler:10.2.0'
 }
