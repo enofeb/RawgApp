@@ -21,7 +21,22 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", BASE_URL
         }
+        debug{
+            buildConfigField "String", "BASE_URL", BASE_URL
+        }
+    }
+
+    kapt {
+        javacOptions {
+            option("-Xmaxerrs", 500)
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -36,6 +51,9 @@ dependencies {
     def version_card_view = "1.0.0"
     def version_retrofit ="2.6.2"
     def version_dagger="2.25.2"
+    def version_okhttp_logging="4.2.1"
+    def version_rx="2.2.15"
+    def version_rx_android="2.1.1"
     //Jetpack
     implementation "androidx.appcompat:appcompat:$version_support"
     implementation "androidx.recyclerview:recyclerview:$version_support"
@@ -53,4 +71,9 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$version_dagger"
     kapt "com.google.dagger:dagger-android-processor:$version_dagger"
     kapt "com.google.dagger:dagger-compiler:$version_dagger"
+    //OkHttpLogging
+    implementation "com.squareup.okhttp3:logging-interceptor:$version_okhttp_logging"
+    //Rx
+    implementation "io.reactivex.rxjava2:rxjava:$version_rx"
+    implementation "io.reactivex.rxjava2:rxandroid:$version_rx_android"
 }
