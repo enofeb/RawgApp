@@ -23,7 +23,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", BASE_URL
         }
-        debug{
+        debug {
             buildConfigField "String", "BASE_URL", BASE_URL
         }
     }
@@ -53,13 +53,13 @@ dependencies {
 
     def version_support = "1.1.0"
     def version_card_view = "1.0.0"
-    def version_retrofit ="2.6.2"
-    def version_dagger="2.25.2"
-    def version_okhttp_logging="4.2.1"
-    def version_rx="2.2.15"
-    def version_rx_android="2.1.1"
+    def version_retrofit = "2.6.2"
+    def version_dagger = "2.25.2"
+    def version_okhttp_logging = "4.2.1"
+    def version_rx = "2.2.15"
+    def version_rx_android = "2.1.1"
     def version_life_cycle = "2.1.0"
-
+    def version_room = "2.2.2"
     //Jetpack
     implementation "androidx.appcompat:appcompat:$version_support"
     implementation "androidx.recyclerview:recyclerview:$version_support"
@@ -86,8 +86,12 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$version_life_cycle"
     implementation "androidx.lifecycle:lifecycle-viewmodel:$version_life_cycle"
     kapt "androidx.lifecycle:lifecycle-compiler:$version_life_cycle"
-
     //ButterKnife
     implementation 'com.jakewharton:butterknife:10.2.0'
     kapt 'com.jakewharton:butterknife-compiler:10.2.0'
+    //Room
+    implementation "androidx.room:room-runtime:$version_room"
+    implementation "androidx.room:room-ktx:$version_room"
+    implementation "androidx.room:room-rxjava2:$version_room"
+    kapt "androidx.room:room-compiler:$version_room"
 }

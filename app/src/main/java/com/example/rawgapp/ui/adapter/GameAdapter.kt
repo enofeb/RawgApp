@@ -7,28 +7,34 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rawgapp.R
-import com.example.rawgapp.data.entity.GameEntity
+import com.example.rawgapp.data.local.entity.GameEntity
 
-class GameAdapter(private val context: Context) :
+class GameAdapter(private val context: Context, private val listener: (Int) -> Unit) :
     RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
 
     private var mGameList: MutableList<GameEntity> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_layout_game, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_layout_game, parent, false)
         return GameViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
-        val gameEntity=mGameList[position]
-        holder.tvGameName.text=gameEntity.name
+        val gameEntity = mGameList[position]
+
+        holder.tvGameName.text = gameEntity.name
+
+        holder.itemView.setOnClickListener {
+            listener(gameEntity.gameId)
+        }
     }
 
-    override fun getItemCount()=mGameList.size
+    override fun getItemCount() = mGameList.size
 
-    fun updateGameList(gameList:List<GameEntity>){
+    fun updateGameList(gameList: List<GameEntity>) {
         mGameList.clear()
-        mGameList=gameList.toMutableList()
+        mGameList = gameList.toMutableList()
         notifyDataSetChanged()
     }
 

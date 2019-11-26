@@ -1,5 +1,6 @@
 package com.example.rawgapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -29,10 +30,12 @@ class GameListActivity : BaseActivity() {
 
     private lateinit var gameAdapter: GameAdapter
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_list)
         (applicationContext as AppController).appComponent.inject(this)
+
         ButterKnife.bind(this)
 
         initView()
@@ -41,7 +44,12 @@ class GameListActivity : BaseActivity() {
     }
 
     private fun initView() {
-        gameAdapter = GameAdapter(applicationContext)
+
+        gameAdapter = GameAdapter(applicationContext) { id ->
+            val gameDetailIntent = GameDetailActivity.newIntent(this, id)
+            gameDetailIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(gameDetailIntent)
+        }
 
         rvMonsterList.apply {
             setHasFixedSize(true)

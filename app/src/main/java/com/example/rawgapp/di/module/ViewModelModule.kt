@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.rawgapp.di.ViewModelKey
 import com.example.rawgapp.factory.ViewModelFactory
+import com.example.rawgapp.ui.viewmodel.GameDetailViewModel
 import com.example.rawgapp.ui.viewmodel.GameListViewModel
 import dagger.Binds
 import dagger.Module
@@ -19,4 +20,9 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(GameListViewModel::class)
     protected abstract fun gameListViewModel(gameListViewModel: GameListViewModel):ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(GameDetailViewModel::class)
+    protected abstract fun gameDetailViewModel(gameDetailViewModel: GameDetailViewModel):ViewModel
 }

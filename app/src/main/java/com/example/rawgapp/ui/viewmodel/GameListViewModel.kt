@@ -4,7 +4,7 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.rawgapp.data.entity.GameEntity
+import com.example.rawgapp.data.local.entity.GameEntity
 import com.example.rawgapp.data.repository.GameRepository
 import com.example.rawgapp.ui.base.BaseActivity
 import com.example.rawgapp.ui.base.BaseViewModel
@@ -22,7 +22,8 @@ class GameListViewModel @Inject constructor(private val gameRepository: GameRepo
             gameRepository.getRemoteGames()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ it -> Log.e(TAG, it.toString())
+                .subscribe({
+                    Log.e(TAG, it.toString())
                     gameList.postValue(it.results)
                 },
                     { error -> Log.e(TAG, error.message) })

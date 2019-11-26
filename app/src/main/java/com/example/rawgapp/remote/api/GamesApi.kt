@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface GamesApi{
-    @GET("games")
+    @GET("games?page_size=10")
     fun fetchGameList(@Query("page") pageNo:Int):Single<GameResponse>
 }

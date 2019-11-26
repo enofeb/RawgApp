@@ -3,6 +3,7 @@ package com.example.rawgapp.di.component
 import android.app.Application
 import com.example.rawgapp.di.module.ApiModule
 import com.example.rawgapp.di.module.ViewModelModule
+import com.example.rawgapp.ui.GameDetailActivity
 import com.example.rawgapp.ui.GameListActivity
 import dagger.BindsInstance
 import dagger.Component
@@ -23,4 +24,5 @@ interface AppComponent {
     }
 
     fun inject(gameListActivity: GameListActivity)
+    fun inject(gameDetailActivity: GameDetailActivity)
 }
