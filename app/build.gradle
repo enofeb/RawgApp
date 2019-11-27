@@ -60,6 +60,7 @@ dependencies {
     def version_rx_android = "2.1.1"
     def version_life_cycle = "2.1.0"
     def version_room = "2.2.2"
+    def version_paging = "2.1.0"
     //Jetpack
     implementation "androidx.appcompat:appcompat:$version_support"
     implementation "androidx.recyclerview:recyclerview:$version_support"
@@ -94,4 +95,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$version_room"
     implementation "androidx.room:room-rxjava2:$version_room"
     kapt "androidx.room:room-compiler:$version_room"
+    //Paging
+    implementation "androidx.paging:paging-runtime:$version_paging"
+    implementation "androidx.paging:paging-rxjava2:$version_paging"
 }

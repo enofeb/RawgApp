@@ -1,7 +1,9 @@
 package com.example.rawgapp.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -16,7 +18,7 @@ import com.example.rawgapp.ui.base.BaseActivity
 import com.example.rawgapp.ui.viewmodel.GameListViewModel
 import javax.inject.Inject
 
-class GameListActivity : BaseActivity() {
+class GameListActivity: BaseActivity() {
 
     override val TAG: String get() = GameListActivity::class.java.simpleName
 
@@ -45,7 +47,7 @@ class GameListActivity : BaseActivity() {
 
     private fun initView() {
 
-        gameAdapter = GameAdapter(applicationContext) { id ->
+        gameAdapter = GameAdapter(this){ id ->
             val gameDetailIntent = GameDetailActivity.newIntent(this, id)
             gameDetailIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(gameDetailIntent)
@@ -63,10 +65,17 @@ class GameListActivity : BaseActivity() {
         gameListViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(GameListViewModel::class.java)
 
-        gameListViewModel.loadGames()
+      //  gameListViewModel.loadGames()
 
-        gameListViewModel.getGameList().observe(this, Observer {
-            gameAdapter.updateGameList(it!!)
+      //  gameListViewModel.getGameList().observe(this, Observer {
+      //      gameAdapter.updateGameList(it!!)
+      //  })
+
+       gameListViewModel.gamePageList
+
+        gameListViewModel.gamePagedList.observe(this, Observer {
+           //    gameAdapter.updateGameList(it!!)
+           gameAdapter.submitList(it)
         })
     }
 }

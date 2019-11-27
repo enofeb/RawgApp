@@ -14,4 +14,7 @@ interface GameDao:BaseDao<GameEntity> {
 
     @Query("SELECT * FROM  ${BaseEntity.GAME_TABLE} WHERE gameId=:mId")
     fun findGame(mId:Int):Single<GameEntity>
+
+    @Query("DELETE FROM ${BaseEntity.GAME_TABLE}")
+    fun deleteAllGames()
 }

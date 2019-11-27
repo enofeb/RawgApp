@@ -2,6 +2,7 @@ package com.example.rawgapp.di.component
 
 import android.app.Application
 import com.example.rawgapp.di.module.ApiModule
+import com.example.rawgapp.di.module.DbModule
 import com.example.rawgapp.di.module.ViewModelModule
 import com.example.rawgapp.ui.GameDetailActivity
 import com.example.rawgapp.ui.GameListActivity
@@ -9,7 +10,7 @@ import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
-@Component(modules = [ApiModule::class,ViewModelModule::class])
+@Component(modules = [ApiModule::class,ViewModelModule::class,DbModule::class])
 @Singleton
 interface AppComponent {
 
