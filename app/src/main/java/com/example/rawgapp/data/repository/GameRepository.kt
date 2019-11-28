@@ -1,17 +1,16 @@
 package com.example.rawgapp.data.repository
 
+import android.annotation.SuppressLint
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.paging.LivePagedListBuilder
+import androidx.paging.DataSource
 import androidx.paging.PagedList
+import androidx.paging.RxPagedListBuilder
 import com.example.rawgapp.data.local.db.dao.GameDao
 import com.example.rawgapp.data.local.entity.GameEntity
-import com.example.rawgapp.data.paging.GameDataSourceFactory
+import com.example.rawgapp.data.paging.PageListGameBoundaryCallback
 import com.example.rawgapp.remote.api.GamesApi
 import com.example.rawgapp.remote.model.GameResponse
-import io.reactivex.Completable
-import io.reactivex.Single
-import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.*
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -26,39 +25,27 @@ class GameRepository @Inject constructor(
         const val TAG = "GameRepository"
     }
 
-    //lateinit var gamePagedList:LiveData<PagedList<GameEntity>>
-  //  lateinit var gameDataSourceFactory:GameDataSourceFactory
 
-  //  fun insertGames(gameList: List<GameEntity>): Single<List<GameEntity>> {
-      //  return getRemoteGames().flatMap {
-            //gameDao.insertList(it.results).andThen(gameDao.getPageGames())
-        //}
-        // return gameDao.insertList(gameList)
-        //   .subscribeOn(Schedulers.io()).andThen(gameDao.getPageGames())
-   // }
-
-    fun getRemoteGames(page:Int): Single<GameResponse> {
+    fun getRemoteGames(page: Int): Single<List<GameEntity>> {
         return gamesApi.fetchGameList(page)
-            .doAfterSuccess { Log.e(TAG, it.results.size.toString()) }
+            .map { it.results }
+            .doAfterSuccess { Log.e(TAG, it.size.toString()) }
     }
-
-
 
     fun findGame(id: Int): Single<GameEntity> {
         return gameDao.findGame(id)
     }
 
-  /*  fun getLiveGamePageList(compositeDisposable: CompositeDisposable):LiveData<PagedList<GameEntity>>{
-        gameDataSourceFactory= GameDataSourceFactory(this,compositeDisposable)
+    fun insertGame(gameList: List<GameEntity>){
+        gameDao.insertList(gameList)
+    }
 
-        val config=PagedList.Config.Builder()
-            .setEnablePlaceholders(false)
-            .setPageSize(10)
-            .build()
+    fun deleteAllGames(){
+        gameDao.deleteAllGames()
+    }
 
-        gamePagedList=LivePagedListBuilder(gameDataSourceFactory,config).build()
-
-        return gamePagedList
-    }*/
+    fun getAllGames() : Observable<PagedList<GameEntity>> = RxPagedListBuilder(gameDao.getGamesSource(), 5)
+        .setBoundaryCallback(PageListGameBoundaryCallback(this))
+        .buildObservable()
 
 }

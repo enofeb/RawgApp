@@ -5,6 +5,7 @@ import androidx.room.OnConflictStrategy
 import io.reactivex.Completable
 
 interface BaseDao<T> {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertList(games: List<T>): Completable
+    fun insertList(games: List<T>)
 }

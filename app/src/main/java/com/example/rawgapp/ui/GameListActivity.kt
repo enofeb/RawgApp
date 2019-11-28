@@ -7,12 +7,14 @@ import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.example.rawgapp.AppController
 import com.example.rawgapp.R
+import com.example.rawgapp.data.local.entity.GameEntity
 import com.example.rawgapp.ui.adapter.GameAdapter
 import com.example.rawgapp.ui.base.BaseActivity
 import com.example.rawgapp.ui.viewmodel.GameListViewModel
@@ -65,16 +67,11 @@ class GameListActivity: BaseActivity() {
         gameListViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(GameListViewModel::class.java)
 
-      //  gameListViewModel.loadGames()
+        gameListViewModel.loadGames()
 
-      //  gameListViewModel.getGameList().observe(this, Observer {
-      //      gameAdapter.updateGameList(it!!)
-      //  })
 
-       gameListViewModel.gamePageList
-
-        gameListViewModel.gamePagedList.observe(this, Observer {
-           //    gameAdapter.updateGameList(it!!)
+        gameListViewModel.pagedListGame.observe(this, Observer<PagedList<GameEntity>> {
+            Log.e(TAG,it.size.toString())
            gameAdapter.submitList(it)
         })
     }
