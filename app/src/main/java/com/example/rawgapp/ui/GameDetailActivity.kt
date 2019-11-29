@@ -41,7 +41,7 @@ class GameDetailActivity : BaseActivity() {
 
     private fun initView(gameEntity: GameDetailEntity){
          binding = DataBindingUtil.setContentView(this, R.layout.activity_game_detail)
-            binding.game=gameEntity
+            binding.gamedetail=gameEntity
     }
 
     private fun initViewModel(gameId:Int) {

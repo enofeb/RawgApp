@@ -30,7 +30,8 @@ data class GameDetailEntity(
     @NonNull
     @SerializedName("released")
     var released: String = "",
-    @NonNull
+    @SerializedName("playtime")
+    var playTime: Int = 0,
     @SerializedName("background_image")
     var imageUrl: String = ""
 ) : BaseEntity(){

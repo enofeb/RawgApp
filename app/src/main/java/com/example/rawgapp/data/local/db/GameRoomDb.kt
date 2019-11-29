@@ -9,7 +9,7 @@ import com.example.rawgapp.data.local.db.dao.GameDetailDao
 import com.example.rawgapp.data.local.entity.GameDetailEntity
 import com.example.rawgapp.data.local.entity.GameEntity
 
-@Database(entities = [GameEntity::class,GameDetailEntity::class],version = 4,exportSchema = false)
+@Database(entities = [GameEntity::class,GameDetailEntity::class],version = 5,exportSchema = false)
 abstract class GameRoomDb : RoomDatabase() {
 
     abstract fun gameDao():GameDao
