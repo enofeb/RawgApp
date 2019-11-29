@@ -28,6 +28,10 @@ android {
         }
     }
 
+    dataBinding {
+        enabled = true
+    }
+
     kapt {
         javacOptions {
             option("-Xmaxerrs", 500)
@@ -36,6 +40,12 @@ android {
 
     androidExtensions {
         experimental = true
+    }
+
+    dexOptions {
+        incremental = true
+        preDexLibraries = false
+        javaMaxHeapSize "4g"
     }
 
     compileOptions {
@@ -98,4 +108,6 @@ dependencies {
     //Paging
     implementation "androidx.paging:paging-runtime:$version_paging"
     implementation "androidx.paging:paging-rxjava2:$version_paging"
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

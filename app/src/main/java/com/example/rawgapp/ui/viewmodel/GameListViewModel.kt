@@ -8,6 +8,8 @@ import androidx.paging.PagedList
 import com.example.rawgapp.data.local.entity.GameEntity
 import com.example.rawgapp.data.repository.GameRepository
 import com.example.rawgapp.ui.base.BaseViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 
@@ -27,5 +29,16 @@ class GameListViewModel @Inject constructor(private val gameRepository: GameRepo
         )
     }
 
+    fun saveDetail(id:Int) {
+        compositeDisposable.add(
+            gameRepository.getRemoteGameDetail(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    Log.e(TAG, it.toString())
+                },
+                    { error -> Log.e(TAG, error.message) })
+        )
+    }
 
 }

@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rawgapp.R
 import com.example.rawgapp.data.local.entity.GameEntity
+import com.example.rawgapp.databinding.ActivityGameDetailBinding
+import com.example.rawgapp.databinding.ItemLayoutGameBinding
 import kotlinx.android.synthetic.main.item_layout_game.view.*
 
 class GameAdapter(private val context: Context,private val listener:(Int)->Unit) :
@@ -17,10 +19,12 @@ class GameAdapter(private val context: Context,private val listener:(Int)->Unit)
 
     private var mGameList: MutableList<GameEntity> = mutableListOf()
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_layout_game, parent, false)
-        return GameViewHolder(itemView)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_layout_game, parent, false)
+        val inflater = LayoutInflater.from(parent.context)
+        val binding=ItemLayoutGameBinding.inflate(inflater)
+        return GameViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
@@ -56,12 +60,13 @@ class GameAdapter(private val context: Context,private val listener:(Int)->Unit)
         }
     }
 
-    class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class GameViewHolder(val binding: ItemLayoutGameBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(gameEntity: GameEntity?){
-            itemView.tvGameName.text=gameEntity?.name
-        }
+            binding.game=gameEntity
+            binding.executePendingBindings()
+       }
 
-        val tvGameName: TextView = itemView.findViewById(R.id.tvGameName)
+      //  val tvGameName: TextView = itemView.findViewById(R.id.tvGameName)
     }
 }

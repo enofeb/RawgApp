@@ -42,14 +42,17 @@ class GameListActivity: BaseActivity() {
 
         ButterKnife.bind(this)
 
-        initView()
+
         initViewModel()
+        initView()
+
 
     }
 
     private fun initView() {
 
         gameAdapter = GameAdapter(this){ id ->
+            gameListViewModel.saveDetail(id)
             val gameDetailIntent = GameDetailActivity.newIntent(this, id)
             gameDetailIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(gameDetailIntent)

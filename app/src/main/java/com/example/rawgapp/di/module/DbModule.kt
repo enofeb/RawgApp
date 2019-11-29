@@ -18,4 +18,8 @@ class DbModule {
     @Singleton
     fun provideGameDao(gameRoomDb: GameRoomDb) = gameRoomDb.gameDao()
 
+    @Provides
+    @Singleton
+    fun provideGameDetailDao(gameRoomDb: GameRoomDb) = gameRoomDb.gameDetailDao()
+
 }

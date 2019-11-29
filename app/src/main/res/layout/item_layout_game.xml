@@ -1,16 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvGameName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:padding="50dp"
-        android:textColor="@color/colorPrimaryDark" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</RelativeLayout>
+    <data>
+
+        <variable
+            name="game"
+            type="com.example.rawgapp.data.local.entity.GameEntity" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvGame"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="300dp">
+
+
+        <RelativeLayout
+            android:id="@+id/rvImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivBackground"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_alignParentTop="true"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{game.imageUrl}" />
+
+            <TextView
+                android:id="@+id/tvGameName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ivBackground"
+                android:text="@{game.name,default=GameName}"
+                android:textColor="@color/colorPrimaryDark" />
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</layout>
+
+
+
+
+

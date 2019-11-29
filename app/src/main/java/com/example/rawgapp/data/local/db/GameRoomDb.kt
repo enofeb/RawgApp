@@ -5,12 +5,15 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.rawgapp.data.local.db.dao.GameDao
+import com.example.rawgapp.data.local.db.dao.GameDetailDao
+import com.example.rawgapp.data.local.entity.GameDetailEntity
 import com.example.rawgapp.data.local.entity.GameEntity
 
-@Database(entities = [GameEntity::class],version = 2,exportSchema = false)
+@Database(entities = [GameEntity::class,GameDetailEntity::class],version = 3,exportSchema = false)
 abstract class GameRoomDb : RoomDatabase() {
 
     abstract fun gameDao():GameDao
+    abstract fun gameDetailDao():GameDetailDao
 
     companion object {
         @Volatile

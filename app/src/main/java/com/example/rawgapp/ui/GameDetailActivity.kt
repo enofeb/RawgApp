@@ -1,34 +1,30 @@
 package com.example.rawgapp.ui
 
-
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.example.rawgapp.AppController
 import com.example.rawgapp.R
 import com.example.rawgapp.ui.base.BaseActivity
 import com.example.rawgapp.ui.viewmodel.GameDetailViewModel
 import javax.inject.Inject
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.example.rawgapp.data.local.entity.GameDetailEntity
+import com.example.rawgapp.data.local.entity.GameEntity
+import com.example.rawgapp.databinding.ActivityGameDetailBinding
 
 class GameDetailActivity : BaseActivity() {
 
     override val TAG: String get() = GameDetailActivity::class.java.simpleName
 
-    @BindView(R.id.tvGameName)
-    lateinit var tvGameName: TextView
-
-    @BindView(R.id.tvGameReleasedDate)
-    lateinit var tvGameReleasedDate: TextView
-
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var gameDetailViewModel: GameDetailViewModel
+    private lateinit var binding: ActivityGameDetailBinding
 
     var gameId: Int = 0
 
@@ -37,20 +33,34 @@ class GameDetailActivity : BaseActivity() {
         setContentView(R.layout.activity_game_detail)
         (applicationContext as AppController).appComponent.inject(this)
 
-        ButterKnife.bind(this)
+        gameId = intent.getIntExtra(GAME_ID, 0)
 
-        gameId=intent.getIntExtra(GAME_ID,0)
-
-        Log.e(TAG,gameId.toString())
+        initViewModel(gameId)
 
     }
 
-    companion object{
-        const val  GAME_ID="GAME_ID"
+    private fun initView(gameEntity: GameDetailEntity){
+         binding = DataBindingUtil.setContentView(this, R.layout.activity_game_detail)
+            binding.game=gameEntity
+    }
 
-        fun newIntent(context: Context, id:Int): Intent {
-            return Intent(context,GameDetailActivity::class.java).apply {
-                putExtra(GAME_ID,id)
+    private fun initViewModel(gameId:Int) {
+        gameDetailViewModel = ViewModelProviders.of(this, viewModelFactory).get(GameDetailViewModel::class.java)
+
+        gameDetailViewModel.loadGameInfo(gameId)
+
+        gameDetailViewModel.getGameLD().observe(this, Observer {
+            initView(it)
+        })
+
+    }
+
+    companion object {
+        const val GAME_ID = "GAME_ID"
+
+        fun newIntent(context: Context, id: Int): Intent {
+            return Intent(context, GameDetailActivity::class.java).apply {
+                putExtra(GAME_ID, id)
             }
         }
     }
