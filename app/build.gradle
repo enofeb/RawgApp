@@ -43,9 +43,9 @@ android {
     }
 
     dexOptions {
-        incremental = true
+        incremental=true
         preDexLibraries = false
-        javaMaxHeapSize "4g"
+        javaMaxHeapSize="4g"
     }
 
     compileOptions {
@@ -110,4 +110,7 @@ dependencies {
     implementation "androidx.paging:paging-rxjava2:$version_paging"
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+    //ImageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.joooonho:selectableroundedimageview:1.0.1'
 }

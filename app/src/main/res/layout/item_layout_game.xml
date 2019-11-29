@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,38 +11,69 @@
             type="com.example.rawgapp.data.local.entity.GameEntity" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cvGame"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="30dp"
-        android:layout_height="300dp">
+        android:layout_height="wrap_content">
 
-
-        <RelativeLayout
-            android:id="@+id/rvImage"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvGame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            app:cardPreventCornerOverlap="false"
+            card_view:cardElevation="3dp"
+            card_view:cardCornerRadius="30dp">
 
-            <ImageView
-                android:id="@+id/ivBackground"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_alignParentTop="true"
-                android:scaleType="centerCrop"
-                app:imageUrl="@{game.imageUrl}" />
+                android:layout_height="match_parent"
+                android:background="@color/colorBlack">
 
-            <TextView
-                android:id="@+id/tvGameName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/ivBackground"
-                android:text="@{game.name,default=GameName}"
-                android:textColor="@color/colorPrimaryDark" />
+                <com.joooonho.SelectableRoundedImageView
+                    android:id="@+id/ivGame"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:scaleType="fitXY"
+                    app:sriv_left_top_corner_radius="30dp"
+                    android:elevation="0dp"
+                    app:sriv_right_top_corner_radius="30dp"
+                    :imageUrl="@{game.imageUrl}" />
 
-        </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="12"
+                    android:background="@color/colorTransparent"
+                    android:padding="10dp"
+                    android:layout_gravity="bottom">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:textSize="17sp"
+                        android:textColor="@color/colorWhite"
+                        android:text="@{game.name,default=GameName}"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:gravity="right"
+                        android:textSize="17sp"
+                        android:textColor="@color/colorWhite"
+                        android:text="@{Double.toString(game.rating),default=Rating}"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:background="@drawable/ic_star_yellow_24dp"/>
+                </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
 
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
 
 </layout>
 

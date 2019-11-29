@@ -22,6 +22,8 @@ data class GameEntity(
     @NonNull
     @SerializedName("released")
     var released: String = "",
+    @SerializedName("rating")
+    var rating:Double=0.0,
     @NonNull
     @SerializedName("background_image")
     var imageUrl: String = ""
