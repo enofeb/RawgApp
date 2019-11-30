@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_name">10sp</dimen>
+    <dimen name="text_size_rating">10sp</dimen>
+    <dimen name="star_icon_width">14dp</dimen>
+    <dimen name="star_icon_height">14dp</dimen>
+
+    <dimen name="text_size_name_detail">23sp</dimen>
+
+    <dimen name="text_size_detail">13sp</dimen>
+    <dimen name="text_size_detail_label">12sp</dimen>
+    <dimen name="detail_icon_width">17dp</dimen>
+    <dimen name="detail_icon_height">17dp</dimen>
+
+    <dimen name="text_size_genre">16sp</dimen>
+    <dimen name="text_size_about">16sp</dimen>
+</resources>

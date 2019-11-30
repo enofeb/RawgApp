@@ -51,7 +51,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="6"
-                        android:textSize="17sp"
+                        android:textSize="@dimen/text_size_name"
                         android:textColor="@color/colorWhite"
                         android:text="@{game.name,default=GameName}"/>
                     <TextView
@@ -59,14 +59,15 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="6"
                         android:gravity="right"
-                        android:textSize="17sp"
+                        android:textSize="@dimen/text_size_rating"
                         android:textColor="@color/colorWhite"
                         android:text="@{Double.toString(game.rating),default=Rating}"/>
+
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/star_icon_width"
+                        android:layout_height="@dimen/star_icon_height"
                         android:layout_weight="0"
-                        android:background="@drawable/ic_star_yellow_24dp"/>
+                        android:background="@drawable/ic_star_yellow_24dp" />
                 </LinearLayout>
 
             </FrameLayout>

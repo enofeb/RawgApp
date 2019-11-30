@@ -86,7 +86,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="@{gamedetail.name,default=GameName}"
                         android:textColor="@color/colorWhite"
-                        android:textSize="30sp" />
+                        android:textSize="@dimen/text_size_name_detail" />
 
                     <View
                         android:id="@+id/viewFirst"
@@ -112,23 +112,23 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="30dp"
-                                android:layout_weight="2"
+                                android:layout_weight="4"
                                 android:orientation="horizontal">
 
                                 <TextView
                                     android:id="@+id/tvRating"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="1"
+                                    android:layout_weight="2"
                                     android:text="@{Double.toString(gamedetail.rating),default=8.8}"
                                     android:textColor="@color/colorWhite"
-                                    android:textSize="17sp" />
+                                    android:textSize="@dimen/text_size_detail" />
 
                                 <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="@dimen/detail_icon_width"
+                                    android:layout_height="@dimen/detail_icon_height"
                                     android:layout_toRightOf="@id/tvRating"
-                                    android:layout_weight="1"
+                                    android:layout_weight="2"
                                     android:background="@drawable/ic_star_white_24dp"/>
 
                                 <TextView
@@ -137,7 +137,7 @@
                                     android:text="Rating"
                                     android:layout_below="@id/tvRating"
                                     android:textColor="@color/colorGrey"
-                                    android:textSize="15sp" />
+                                    android:textSize="@dimen/text_size_detail_label" />
 
                             </RelativeLayout>
 
@@ -156,12 +156,12 @@
                                     android:layout_toRightOf="@id/ivTime"
                                     android:text="@{Double.toString(gamedetail.playTime),default=88}"
                                     android:textColor="@color/colorWhite"
-                                    android:textSize="17sp" />
+                                    android:textSize="@dimen/text_size_detail" />
 
                                 <ImageView
                                     android:id="@+id/ivTime"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="@dimen/detail_icon_width"
+                                    android:layout_height="@dimen/detail_icon_height"
                                     android:layout_weight="1"
                                     android:background="@drawable/ic_av_timer_white_24dp"/>
                                 <TextView
@@ -170,7 +170,7 @@
                                     android:text="Av.Hour"
                                     android:layout_below="@id/tvPlayTime"
                                     android:textColor="@color/colorGrey"
-                                    android:textSize="15sp" />
+                                    android:textSize="@dimen/text_size_detail_label" />
 
                             </RelativeLayout>
 
@@ -189,12 +189,12 @@
                                     android:layout_toRightOf="@id/ivDate"
                                     android:text="@{gamedetail.released,default=20130917}"
                                     android:textColor="@color/colorWhite"
-                                    android:textSize="17sp" />
+                                    android:textSize="@dimen/text_size_detail" />
 
                                 <ImageView
                                     android:id="@+id/ivDate"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="@dimen/detail_icon_width"
+                                    android:layout_height="@dimen/detail_icon_height"
                                     android:layout_weight="1"
                                     android:background="@drawable/ic_date_range_white_24dp"/>
 
@@ -202,9 +202,10 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Release Date"
+                                    android:layout_marginLeft="6dp"
                                     android:layout_below="@id/tvReleased"
                                     android:textColor="@color/colorGrey"
-                                    android:textSize="15sp" />
+                                    android:textSize="@dimen/text_size_detail_label" />
 
                             </RelativeLayout>
 
@@ -238,7 +239,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="Genres"
                         android:textColor="@color/colorWhite"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/text_size_genre" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -260,12 +261,12 @@
                         android:layout_marginBottom="10dp"
                         android:text="About"
                         android:textColor="@color/colorWhite"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/text_size_about" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@{gamedetail.description,default=AboutText}"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="15dp"
                         android:textColor="@color/colorWhite"
                         android:layout_below="@id/tvAbout"/>
                 </RelativeLayout>
