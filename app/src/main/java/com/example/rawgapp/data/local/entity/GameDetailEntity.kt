@@ -6,10 +6,15 @@ import androidx.annotation.NonNull
 import androidx.databinding.BindingAdapter
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.example.rawgapp.data.local.db.GenreTypeConverter
 import com.google.gson.annotations.SerializedName
 import com.squareup.picasso.Picasso
+import io.reactivex.Observable
+import io.reactivex.Single
 
 @Entity(tableName = BaseEntity.GAME_DETAIL_TABLE)
+@TypeConverters(GenreTypeConverter::class)
 data class GameDetailEntity(
     @PrimaryKey
     @NonNull
@@ -32,6 +37,8 @@ data class GameDetailEntity(
     var released: String = "",
     @SerializedName("playtime")
     var playTime: Int = 0,
+    @SerializedName("genres")
+    var genres: List<GenreEntity> = mutableListOf(),
     @SerializedName("background_image")
     var imageUrl: String = ""
 ) : BaseEntity(){
@@ -46,4 +53,5 @@ data class GameDetailEntity(
                 .into(view)
         }
     }
+
 }

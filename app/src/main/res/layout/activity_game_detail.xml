@@ -5,6 +5,12 @@
 
     <data>
 
+        <import type="com.example.rawgapp.data.local.db.GenreConverter"/>
+
+        <variable
+            name="gamedetailPage"
+            type="com.example.rawgapp.ui.GameDetailActivity" />
+
         <variable
             name="gamedetail"
             type="com.example.rawgapp.data.local.entity.GameDetailEntity" />
@@ -45,6 +51,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="22dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:background="@drawable/ic_arrow_back_white_24dp"
                     app:layout_collapseMode="pin" />
 
@@ -217,6 +225,29 @@
 
                 </RelativeLayout>
 
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tvGenre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Genres"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@{GenreConverter.getGenresName(gamedetail.genres)}"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/colorWhite"
+                        android:layout_below="@id/tvGenre"/>
+                </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
@@ -233,7 +264,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="@{gamedetail.description,default=AboutContent}"
+                        android:text="@{gamedetail.description,default=AboutText}"
                         android:layout_marginLeft="20dp"
                         android:textColor="@color/colorWhite"
                         android:layout_below="@id/tvAbout"/>

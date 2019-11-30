@@ -3,6 +3,7 @@ package com.example.rawgapp.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.example.rawgapp.AppController
 import com.example.rawgapp.R
@@ -12,6 +13,8 @@ import javax.inject.Inject
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import butterknife.ButterKnife
+import butterknife.OnClick
 import com.example.rawgapp.data.local.entity.GameDetailEntity
 import com.example.rawgapp.data.local.entity.GameEntity
 import com.example.rawgapp.databinding.ActivityGameDetailBinding
@@ -33,6 +36,8 @@ class GameDetailActivity : BaseActivity() {
         setContentView(R.layout.activity_game_detail)
         (applicationContext as AppController).appComponent.inject(this)
 
+        ButterKnife.bind(this)
+
         gameId = intent.getIntExtra(GAME_ID, 0)
 
         initViewModel(gameId)
@@ -53,6 +58,12 @@ class GameDetailActivity : BaseActivity() {
             initView(it)
         })
 
+    }
+
+    @OnClick(R.id.ivBackButton)
+    fun backButton(){
+        val intent = Intent(this,GameListActivity::class.java)
+        startActivity(intent)
     }
 
     companion object {
