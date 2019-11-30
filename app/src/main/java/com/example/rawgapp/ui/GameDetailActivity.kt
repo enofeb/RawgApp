@@ -3,7 +3,9 @@ package com.example.rawgapp.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.rawgapp.AppController
 import com.example.rawgapp.R
@@ -16,7 +18,6 @@ import androidx.lifecycle.ViewModelProviders
 import butterknife.ButterKnife
 import butterknife.OnClick
 import com.example.rawgapp.data.local.entity.GameDetailEntity
-import com.example.rawgapp.data.local.entity.GameEntity
 import com.example.rawgapp.databinding.ActivityGameDetailBinding
 
 class GameDetailActivity : BaseActivity() {
@@ -44,13 +45,14 @@ class GameDetailActivity : BaseActivity() {
 
     }
 
-    private fun initView(gameEntity: GameDetailEntity){
-         binding = DataBindingUtil.setContentView(this, R.layout.activity_game_detail)
-            binding.gamedetail=gameEntity
+    private fun initView(gameEntity: GameDetailEntity) {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_game_detail)
+        binding.gamedetail = gameEntity
     }
 
-    private fun initViewModel(gameId:Int) {
-        gameDetailViewModel = ViewModelProviders.of(this, viewModelFactory).get(GameDetailViewModel::class.java)
+    private fun initViewModel(gameId: Int) {
+        gameDetailViewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(GameDetailViewModel::class.java)
 
         gameDetailViewModel.loadGameInfo(gameId)
 
@@ -58,11 +60,17 @@ class GameDetailActivity : BaseActivity() {
             initView(it)
         })
 
+        gameDetailViewModel.getCheck().observe(this, Observer {
+            if (it == false) {
+                Toast.makeText(this, "Please Connect the Internet!", Toast.LENGTH_LONG).show()
+            }
+        })
+
     }
 
     @OnClick(R.id.ivBackButton)
-    fun backButton(){
-        val intent = Intent(this,GameListActivity::class.java)
+    fun backButton() {
+        val intent = Intent(this, GameListActivity::class.java)
         startActivity(intent)
     }
 

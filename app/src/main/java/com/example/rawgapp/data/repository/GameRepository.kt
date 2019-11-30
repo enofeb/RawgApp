@@ -15,8 +15,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import io.reactivex.Maybe
 
-
-
 @Singleton
 class GameRepository @Inject constructor(
     private val gamesApi: GamesApi,
