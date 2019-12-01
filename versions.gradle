@@ -1,0 +1,89 @@
+ext.deps = [:]
+def versions = [:]
+
+
+versions.support = "1.1.0"
+versions.cardview = "1.0.0"
+versions.ktx = "1.0.2"
+versions.constraint = "1.1.3"
+versions.material = "1.0.0"
+versions.retrofit = "2.6.2"
+versions.dagger = "2.25.2"
+versions.lifecycle = "2.1.0"
+versions.butterknife = "10.2.0"
+versions.room = "2.2.2"
+versions.paging = "2.1.0"
+versions.picasso = "2.71828"
+versions.roundedimageview = "1.0.1"
+versions.rxjava2 = "2.2.15"
+versions.rx_android = "2.1.1"
+versions.okhttp_logging = "4.2.1"
+versions.junit = "4.12"
+versions.junit_ext = "1.1.0"
+versions.espresso = "3.1.1"
+versions.mockito = "1.10.19"
+versions.mockito_inline = "2.13.0"
+versions.core_testing = "2.1.0"
+versions.core_test = "1.0.0"
+ext.versions = versions
+
+
+def support = [:]
+support.app_compat = "androidx.appcompat:appcompat:$versions.support"
+support.recyclerview = "androidx.recyclerview:recyclerview:$versions.support"
+deps.support = support
+
+def retrofit = [:]
+retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.rxjava2_adapter = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+deps.retrofit = retrofit
+
+def dagger = [:]
+dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
+dagger.android = "com.google.dagger:dagger-android:$versions.dagger"
+dagger.android_support = "com.google.dagger:dagger-android-support:$versions.dagger"
+dagger.android_processor = "com.google.dagger:dagger-android-processor:$versions.dagger" //Kapt
+dagger.android_compiler = "com.google.dagger:dagger-compiler:$versions.dagger"    //Kapt
+deps.dagger = dagger
+
+def lifecycle = [:]
+lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+lifecycle.viewmodel = "androidx.lifecycle:lifecycle-viewmodel:$versions.lifecycle"
+lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle" //Kapt
+deps.lifecycle = lifecycle
+
+def butterknife = [:]
+butterknife.runtime = "com.jakewharton:butterknife:$versions.butterknife"
+butterknife.compiler = "com.jakewharton:butterknife-compiler:$versions.butterknife"
+deps.butterknife = butterknife
+
+def room = [:]
+room.runtime = "androidx.room:room-runtime:$versions.room"
+room.ktx = "androidx.room:room-ktx:$versions.room"
+room.rx_java = "androidx.room:room-rxjava2:$versions.room"
+room.compiler = "androidx.room:room-compiler:$versions.room"  //Kapt
+deps.room = room
+
+def paging = [:]
+paging.runtime = "androidx.paging:paging-runtime:$versions.paging"
+paging.rx_java = "androidx.paging:paging-rxjava2:$versions.paging"
+deps.paging = paging
+
+deps.picasso = "com.squareup.picasso:picasso:$versions.picasso"
+deps.roundedimageview = "com.joooonho:selectableroundedimageview:$versions.roundedimageview"
+deps.ok_http_logging = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp_logging"
+deps.rxjava = "io.reactivex.rxjava2:rxjava:$versions.rxjava2"
+deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
+deps.cardview = "androidx.cardview:cardview:$versions.cardview"
+deps.ktx = "androidx.core:core-ktx:$versions.ktx"
+deps.constraint = "androidx.constraintlayout:constraintlayout:$versions.constraint"
+deps.material = "com.google.android.material:material:$versions.material"
+deps.junit = "junit:junit:$versions.junit"
+deps.junit_ext = "androidx.test.ext:junit:$versions.junit_ext"
+deps.espresso = "androidx.test.espresso:espresso-core:$versions.espresso"
+deps.mockito = "org.mockito:mockito-core:$versions.mockito"
+deps.mockito_inline = "org.mockito:mockito-inline:$versions.mockito_inline"
+deps.core_testing = "androidx.arch.core:core-testing:$versions.core_testing"
+deps.core_test = "androidx.test:core:$versions.core_test"
+ext.deps = deps

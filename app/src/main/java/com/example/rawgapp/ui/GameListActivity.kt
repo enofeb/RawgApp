@@ -45,8 +45,6 @@ class GameListActivity: BaseActivity() {
 
         initViewModel()
         initView()
-
-
     }
 
     private fun initView() {
