@@ -10,7 +10,7 @@ import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
-@Component(modules = [ApiModule::class,ViewModelModule::class,DbModule::class])
+@Component(modules = [ApiModule::class, ViewModelModule::class, DbModule::class])
 @Singleton
 interface AppComponent {
 

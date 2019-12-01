@@ -35,26 +35,28 @@ class GameRepository @Inject constructor(
     fun getRemoteGameDetail(gameId: Int): Maybe<GameDetailEntity> {
         return gamesApi.fetchGame(gameId)
             .flatMapCompletable { gameDetailDao.insert(it) }
-            .andThen(MaybeSource<GameDetailEntity>{ observer -> observer.onSuccess(gameDetailDao.findGameDetail(gameId)) })
+            .andThen(MaybeSource<GameDetailEntity> { observer ->
+                observer.onSuccess(
+                    gameDetailDao.findGameDetail(
+                        gameId
+                    )
+                )
+            })
             .subscribeOn(Schedulers.io())
     }
 
-    fun getLocalGameDetail(gameId: Int):Maybe<GameDetailEntity>{
-        val result=gameDetailDao.findGameDetail(gameId)
+    fun getLocalGameDetail(gameId: Int): Maybe<GameDetailEntity> {
+        val result = gameDetailDao.findGameDetail(gameId)
         return if (result != null) Maybe.just(gameDetailDao.findGameDetail(gameId)) else Maybe.empty()
     }
 
-    fun getGameDetail(gameId: Int):Single<GameDetailEntity>{
-        return Maybe.concat(getLocalGameDetail(gameId),getRemoteGameDetail(gameId))
+    fun getGameDetail(gameId: Int): Single<GameDetailEntity> {
+        return Maybe.concat(getLocalGameDetail(gameId), getRemoteGameDetail(gameId))
             .firstOrError()
     }
 
     fun insertGames(gameList: List<GameEntity>) {
         gameDao.insertList(gameList)
-    }
-
-    fun deleteAllGames() {
-        gameDao.deleteAllGames()
     }
 
     fun getAllGames(): Observable<PagedList<GameEntity>> =

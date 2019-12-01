@@ -10,5 +10,5 @@ interface BaseDao<T> {
     fun insertList(games: List<T>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(games: T):Completable
+    fun insert(games: T): Completable
 }

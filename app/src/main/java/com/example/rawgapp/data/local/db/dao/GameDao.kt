@@ -14,7 +14,7 @@ interface GameDao:BaseDao<GameEntity> {
     fun getGamesSource(): DataSource.Factory<Int, GameEntity>
 
     @Query("SELECT * FROM  ${BaseEntity.GAME_TABLE}")
-    fun getPageGames():Single<List<GameEntity>>
+    fun getPageGames(): Single<List<GameEntity>>
 
     @Query("SELECT * FROM  ${BaseEntity.GAME_TABLE} WHERE gameId=:mId")
     fun findGame(mId:Int):Single<GameEntity>

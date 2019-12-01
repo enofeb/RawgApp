@@ -31,7 +31,8 @@ class GameDetailViewModel @Inject constructor(private val gameRepository: GameRe
                     Log.e(TAG, it.toString())
                 }, {
                     //I know that error might have different cause but I just wanted to do that when the local db null,show the message
-                        error -> checkInternet.postValue(false)
+                        error ->
+                    checkInternet.postValue(false)
                 })
         )
     }

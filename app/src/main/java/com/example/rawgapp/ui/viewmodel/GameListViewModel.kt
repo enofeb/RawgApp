@@ -2,10 +2,8 @@ package com.example.rawgapp.ui.viewmodel
 
 import android.content.ContentValues.TAG
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
-import com.example.rawgapp.data.local.entity.GameDetailEntity
 import com.example.rawgapp.data.local.entity.GameEntity
 import com.example.rawgapp.data.repository.GameRepository
 import com.example.rawgapp.ui.base.BaseViewModel
@@ -42,5 +40,4 @@ class GameListViewModel @Inject constructor(private val gameRepository: GameRepo
                     { error -> Log.e(TAG, error.message) })
         )
     }
-
 }

@@ -23,14 +23,14 @@ data class GameEntity(
     @SerializedName("released")
     var released: String = "",
     @SerializedName("rating")
-    var rating:Double=0.0,
+    var rating: Double = 0.0,
     @SerializedName("background_image")
-    var imageUrl: String = ""
-) : BaseEntity(){
-    companion object{
+    var imageUrl: String? = ""
+) : BaseEntity() {
+    companion object {
         @JvmStatic
         @BindingAdapter("imageUrl")
-        fun loadImage(view: ImageView, imageUrl: String) {
+        fun loadImage(view: ImageView?, imageUrl: String?) {
             Picasso.get()
                 .load(imageUrl)
                 .placeholder(R.drawable.alert_dark_frame)

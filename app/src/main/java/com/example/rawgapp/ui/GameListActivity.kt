@@ -49,7 +49,7 @@ class GameListActivity: BaseActivity() {
 
     private fun initView() {
 
-        gameAdapter = GameAdapter(this){ id ->
+        gameAdapter = GameAdapter{ id ->
             gameListViewModel.saveDetail(id)
             val gameDetailIntent = GameDetailActivity.newIntent(this, id)
             gameDetailIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

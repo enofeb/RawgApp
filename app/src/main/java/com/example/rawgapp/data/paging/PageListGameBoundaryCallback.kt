@@ -20,18 +20,16 @@ class PageListGameBoundaryCallback(private val gameRepository: GameRepository) :
     private var initialPage = 1
 
 
-
     private fun getAndSaveGames() {
         if (isRequestRunning) return
 
         isRequestRunning = true
 
         compositeDisposable.add(gameRepository.getRemoteGames(initialPage)
-            // .map{t->t.map { it.toGameEntity() }}
             .doOnSuccess {
                 if (initialPage != 5) {
                     gameRepository.insertGames(it)
-                    Log.e(TAG, "Inserted: ${it.toString()}")
+                    Log.e(TAG, "Inserted: ${it}")
                 } else {
                     Log.e(TAG, "No Inserted")
                 }

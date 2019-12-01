@@ -10,8 +10,6 @@ import androidx.room.TypeConverters
 import com.example.rawgapp.data.local.db.GenreTypeConverter
 import com.google.gson.annotations.SerializedName
 import com.squareup.picasso.Picasso
-import io.reactivex.Observable
-import io.reactivex.Single
 
 @Entity(tableName = BaseEntity.GAME_DETAIL_TABLE)
 @TypeConverters(GenreTypeConverter::class)
@@ -20,19 +18,14 @@ data class GameDetailEntity(
     @NonNull
     @SerializedName("id")
     var gameId: Int = 0,
-    @NonNull
     @SerializedName("slug")
-    var slug:String="",
-    @NonNull
+    var slug: String = "",
     @SerializedName("name")
     var name: String = "",
-    @NonNull
     @SerializedName("description")
-    var description:String="",
-    @NonNull
+    var description: String = "",
     @SerializedName("rating")
-    var rating:Double=0.0,
-    @NonNull
+    var rating: Double = 0.0,
     @SerializedName("released")
     var released: String = "",
     @SerializedName("playtime")
@@ -40,13 +33,13 @@ data class GameDetailEntity(
     @SerializedName("genres")
     var genres: List<GenreEntity> = mutableListOf(),
     @SerializedName("background_image")
-    var imageUrl: String = ""
-) : BaseEntity(){
+    var imageUrl: String? = ""
+) : BaseEntity() {
 
-    companion object{
+    companion object {
         @JvmStatic
         @BindingAdapter("imageUrl")
-        fun loadImage(view: ImageView, imageUrl: String) {
+        fun loadImage(view: ImageView?, imageUrl: String?) {
             Picasso.get()
                 .load(imageUrl)
                 .placeholder(R.drawable.alert_dark_frame)

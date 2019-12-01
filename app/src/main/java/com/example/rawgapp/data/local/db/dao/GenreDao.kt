@@ -7,7 +7,7 @@ import com.example.rawgapp.data.local.entity.GenreEntity
 import io.reactivex.Single
 
 @Dao
-interface GenreDao:BaseDao<GenreEntity>{
+interface GenreDao : BaseDao<GenreEntity> {
     @Query("SELECT * FROM  ${BaseEntity.GENRE_TABLE}")
     fun getAllGenres(): Single<List<GenreEntity>>
 }
