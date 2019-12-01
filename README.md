@@ -1,6 +1,6 @@
 # RawgApp
 A simple master-detail android app, that shows game from RawG API.It is fully Kotlin.
-#Implemented Patterns
+# Implemented Patterns
 - MVVM
 - Repository
 # Libraries
